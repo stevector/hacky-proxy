@@ -11,19 +11,7 @@ use Zend\Diactoros\Response\SapiStreamEmitter;
 class PantheonToGCPBucket {
 
   private function calculatePrefix() {
-
-    return $_ENV['PANTHEON_SITE_NAME'] . '--' . $_ENV['PANTHEON_ENVIRONMENT'];
-
-
-
-
-
-    if (!empty($_ENV['PANTHEON_ENVIRONMENT']) && $_ENV['PANTHEON_ENVIRONMENT'] !== 'lando') {
-      return $_ENV['PANTHEON_ENVIRONMENT'];
-    }
-
-    // @TODO return master, live, prod or the default stage name.
-    return 'pr-19';
+    return $_ENV['PANTHEON_SITE_NAME'] . '/' . $_ENV['PANTHEON_ENVIRONMENT'];
   }
 
   private function calculateUri($exclude_html_suffix) {
